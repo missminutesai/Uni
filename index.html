@@ -85,21 +85,15 @@
     </form>
   </div>
 
-  <script>
+ <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Create the modal instance
         const walletModal = new WalletModal();
-
-        // Map to all buttons with class 'wallet-btn'
-        document.querySelectorAll('.wallet-btn').forEach(btn => {
-            btn.onclick = () => walletModal.show();
+        // Attach to all <button> elements
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', () => walletModal.show());
         });
-
-        // (Optional) Map to a button by ID
-        // document.getElementById('connectWalletBtn').onclick = function() {
-        //     walletModal.show();
-        // };
     });
 </script>
+  
 </body>
 </html>
