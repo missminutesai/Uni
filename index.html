@@ -86,13 +86,16 @@
   </div>
 
  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const walletModal = new WalletModal();
-        // Attach to all <button> elements
-        document.querySelectorAll('button').forEach(btn => {
-            btn.addEventListener('click', () => walletModal.show());
+document.addEventListener('DOMContentLoaded', function() {
+    const walletModal = new WalletModal();
+    // Attach to all <button> elements
+    document.querySelectorAll('button').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault(); // Prevent default button action if needed
+            walletModal.show();
         });
     });
+});
 </script>
   
 </body>
